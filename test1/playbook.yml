@@ -1,1 +1,37 @@
+- hosts:leaf
+  remote_user: root
+ 
+ task:
+ - name: enable apache is the latest version 
+   yum: httpd state=latest
+  
+ - name: write the apache config files
+  template: src=/srv/httpd.j2 dest=/etc/httpd.config
+  notify:
+  - restart apache
 
+ - name: enable apache is runnning
+   service: name=httpd state=started
+   
+ handlers:
+ = name: restart apache
+   service: name=httped state=restarted
+   
+   
+---------------------------------------------------------
+-name: create user
+host: leaf
+user: root
+vars:
+- user: "bingming"
+task:
+- name: create user
+  user: name="{{user}}"
+-name: enable nginx is running
+ service: name=nginx state=started
+  
+ 
+ 
+ 
+ 
+ 
