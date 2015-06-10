@@ -26,7 +26,7 @@ vars:
 - user: "bingming"
 task:
 - name: create user
-  user: name="{{user}}"
+  user: name={{user}}
 -name: enable nginx is running
  service: name=nginx state=started
   
